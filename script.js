@@ -224,7 +224,7 @@ function showTasks() {
                 })
               }</p>
               <p
-              class=${completedDate - dueDate > 0 ? "task-late" : "task-ontime"}s
+              class=${completedDate - dueDate > 0 ? "task-late" : "task-ontime"}
               >${timeString}</p>
             </div>
             <div class="complete-checkbox">
