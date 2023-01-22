@@ -1,0 +1,242 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #f8f8f8;
+  font-family: "Roboto", sans-serif;
+}
+
+.container {
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.header h1 {
+  font-size: 3rem;
+  font-weight: 900;
+  color: #1e1e1e;
+}
+
+.form {
+  background-color: #fff;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.288);
+}
+
+.form-control {
+  margin-bottom: 1rem;
+}
+
+.form-control label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #1e1e1e;
+}
+
+.form-control input,
+.form-control textarea {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #e2e2e2;
+  border-radius: 0.25rem;
+  font-size: 1rem;
+}
+
+.form-control textarea {
+  resize: none;
+}
+
+form .add-task {
+  display: flex;
+  justify-content: flex-end;
+}
+
+form .add-task button {
+  margin-top: 1rem;
+  padding: 0.5rem 2rem;
+}
+
+.btn {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.25rem;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #fff;
+  background-color: #1e1e1e;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: rgba(0, 0, 0, 0.747);
+}
+
+.btn.add-task:hover {
+  background-color: rgb(3, 192, 3);
+}
+
+.btn.edit:hover {
+  background-color: purple;
+}
+
+.btn.delete:hover {
+  background-color: #ff0000;
+}
+
+.app-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+.tasks {
+  margin-top: 2rem;
+}
+
+.tasks h2 {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #1e1e1e;
+  margin-bottom: 1rem;
+}
+
+.no-tasks {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.task {
+  background-color: #fff;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 1.5px rgba(0, 0, 0, 0.26);
+}
+
+.task-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.task-header h3 {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #1e1e1e;
+}
+
+.task-actions {
+  display: flex;
+}
+
+.task-actions button {
+  margin-left: 0.5rem;
+}
+
+.task-body {
+  margin-bottom: 1rem;
+}
+
+.task-body p {
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #1e1e1e;
+}
+
+/* If a task is compeleted grey out and strike out the title, body and date */
+.task.completed .task-header h3 {
+  color: #a9a9a9;
+  text-decoration: line-through;
+}
+
+.task.completed .task-body p {
+  color: #a9a9a9;
+  text-decoration: line-through;
+}
+
+.task-body p:last-child {
+  margin-bottom: 0;
+}
+
+/* <span class="task-time task-late">Late by: ${timeString}</span>
+<span class="task-time task-ontime">Completed on time</span> */
+.task-time {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #1e1e1e;
+}
+
+.task-time .task-ontime,
+.task-time .task-early {
+  color: #00ff00;
+}
+
+.task-time .task-late {
+  color: #ff0000;
+}
+
+.task-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.task-footer .complete-checkbox label {
+  font-size: 1rem;
+  font-weight: 500;
+  margin-right: 0.5rem;
+}
+
+.task-footer .complete-checkbox input {
+  transform: scale(1.5);
+}
+
+footer {
+  margin: 2rem;
+  text-align: center;
+}
+
+/* If an element is disabled */
+.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+@media screen and (min-width: 768px) {
+  .form-control {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .form-control label {
+    margin-bottom: 0;
+  }
+
+  .form-control input,
+  .form-control textarea {
+    width: 70%;
+  }
+
+  .form-control textarea {
+    height: 100px;
+  }
+}
