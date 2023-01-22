@@ -176,16 +176,13 @@ form .add-task button {
   margin-bottom: 0;
 }
 
-/* <span class="task-time task-late">Late by: ${timeString}</span>
-<span class="task-time task-ontime">Completed on time</span> */
 .task-time {
   font-size: 0.8rem;
   font-weight: 500;
   color: #1e1e1e;
 }
 
-.task-time .task-ontime,
-.task-time .task-early {
+.task-time .task-ontime {
   color: #00ff00;
 }
 

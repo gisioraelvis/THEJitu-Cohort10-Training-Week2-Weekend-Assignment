@@ -114,7 +114,15 @@ function showTasks() {
             </div>
             <div class="task-body">
               <p>${task.description}</p>
-              <p>Due Date: ${task.date}</p>
+              <p>Due Date: ${new Date(task.date).toLocaleDateString("EAT", {
+                weekday: "short",
+                year: "numeric",
+                month: "short",
+                day: "numeric",
+                hour: "numeric",
+                minute: "numeric",
+                second: "numeric",
+              })}</p>
             </div>
             <div class="task-footer">
               <div class="complete-checkbox">
@@ -136,42 +144,48 @@ function showTasks() {
     tasks.innerHTML += `<h2>Completed Tasks</h2>`;
     // Loop through completed tasks and display them
     completedTasks.forEach((task) => {
-      // Sun Jan 22 2023 19:40:55 format
       let completedDate = new Date(task.completedDate);
       let dueDate = new Date(task.date);
       let timeDiff = completedDate - dueDate;
-      let secs = Math.floor(timeDiff / 1000);
-      let mins = Math.floor(secs / 60);
-      let hrs = Math.floor(mins / 60);
-      let days = Math.floor(hrs / 24);
-      let weeks = Math.floor(days / 7);
-      let months = Math.floor(weeks / 4);
-      let years = Math.floor(months / 12);
       let timeString = "";
 
-      if (years > 0) {
-        timeString += `${years > 1 ? years + " years " : years + " year "}`;
+      if (timeDiff > 0) {
+        timeString += "Late by: ";
+      } else {
+        timeString += "Completed on time by: ";
+        timeDiff = -timeDiff;
       }
-      if (months > 0) {
-        timeString += `${
-          months > 1 ? months + " months " : months + " month "
-        }`;
+
+      let seconds = Math.floor((timeDiff / 1000) % 60);
+      let minutes = Math.floor((timeDiff / 1000 / 60) % 60);
+      let hours = Math.floor((timeDiff / (1000 * 60 * 60)) % 24);
+      let days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+      let weeks = Math.floor(timeDiff / (1000 * 60 * 60 * 24 * 7));
+      let months = Math.floor(timeDiff / (1000 * 60 * 60 * 24 * 30));
+      let years = Math.floor(timeDiff / (1000 * 60 * 60 * 24 * 365));
+
+      if (days > 0) {
+        timeString += `${days} day${days > 1 ? "s" : ""} `;
+      }
+      if (hours > 0) {
+        timeString += `${hours} hour${hours > 1 ? "s" : ""} `;
+      }
+      if (minutes > 0) {
+        timeString += `${minutes} minute${minutes > 1 ? "s" : ""} `;
+      }
+      if (seconds > 0) {
+        timeString += `${seconds} second${seconds > 1 ? "s" : ""} `;
       }
       if (weeks > 0) {
-        timeString += `${weeks > 1 ? weeks + " weeks " : weeks + " week "}`;
+        timeString += `${weeks} week${weeks > 1 ? "s" : ""} `;
       }
-      if (days > 0) {
-        timeString += `${days > 1 ? days + " days " : days + " day "}`;
+      if (months > 0) {
+        timeString += `${months} month${months > 1 ? "s" : ""} `;
       }
-      if (hrs > 0) {
-        timeString += `${hrs > 1 ? hrs + " hrs " : hrs + " hr "}`;
+      if (years > 0) {
+        timeString += `${years} year${years > 1 ? "s" : ""} `;
       }
-      if (mins > 0) {
-        timeString += `${mins > 1 ? mins + " mins " : mins + " min "}`;
-      }
-      if (secs > 0) {
-        timeString += `${secs > 1 ? secs + " secs " : secs + " sec "}`;
-      }
+
       tasks.innerHTML += `
         <div class="task completed" id="${task.id}">
           <div class="task-header">
@@ -182,20 +196,36 @@ function showTasks() {
           </div>
           <div class="task-body">
             <p>${task.description}</p>
-            <p>Due Date: ${task.date}</p>
+            <p>Due Date: ${
+              // Format: Sun Jan 22 2023 21:28:59 PM
+              dueDate.toLocaleString("EAT", {
+                weekday: "short",
+                year: "numeric",
+                month: "short",
+                day: "numeric",
+                hour: "numeric",
+                minute: "numeric",
+                second: "numeric",
+              })
+            }</p>
           </div>
           <div class="task-footer">
             <div class="task-time">
-              <p>Completed Date: ${task.completedDate}</p>
-              <p>Time Taken: ${timeString}</p>
-              ${
-                // if completed before, ontime or late
-                completedDate < dueDate
-                  ? `<p class="task-early">Completed Early</p>`
-                  : completedDate > dueDate
-                  ? `<p class="task-late">Completed Late</p>`
-                  : `<p class="task-ontime">Completed On Time</p>`
-              }
+              <p>Completed Date: ${
+                // Format: Sun Jan 22 2023 21:28:59 PM
+                completedDate.toLocaleString("EAT", {
+                  weekday: "short",
+                  year: "numeric",
+                  month: "short",
+                  day: "numeric",
+                  hour: "numeric",
+                  minute: "numeric",
+                  second: "numeric",
+                })
+              }</p>
+              <p
+              class=${completedDate - dueDate > 0 ? "task-late" : "task-ontime"}s
+              >${timeString}</p>
             </div>
             <div class="complete-checkbox">
               <label for="complete">Completed:</label>
@@ -209,9 +239,13 @@ function showTasks() {
     });
   }
 
-  // If there are no tasks, show a message
+  // If there are no tasks
   if (!completedTasks.length && !uncompletedTasks.length) {
-    tasks.innerHTML += `<h2> No Tasks found. Why not add some tasks today! </h2>`;
+    tasks.innerHTML += `
+    <div class="no-tasks">
+      <h3>No task found, why not add some tasks today!</h3>
+    </div>
+    `;
   }
 }
 
