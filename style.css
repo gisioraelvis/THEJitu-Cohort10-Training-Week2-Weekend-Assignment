@@ -9,6 +9,7 @@
 body {
   background-color: #f8f8f8;
   font-family: "Roboto", sans-serif;
+  background: linear-gradient(45deg, #f8f8f8, #f8f8f8);
 }
 
 .container {
