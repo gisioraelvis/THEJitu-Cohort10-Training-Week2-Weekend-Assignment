@@ -1,4 +1,5 @@
 ## THEJitu Cohort 9 Training Week 2 Weekend Assignment
+
 Use HTML, CSS and JavaScript (no Library, Framework or Database).
 The assignment is to build a Todo Application that is supposed to do the following:
 
@@ -9,6 +10,7 @@ The assignment is to build a Todo Application that is supposed to do the followi
 - Able to show tasks that were completed on time and by how many days, and tasks that were submitted late.
 
 Other Important Notes:
+
 - Interactive UI
 - Inputs Validation
 - Code Readability & Documentation
@@ -19,4 +21,5 @@ Other Important Notes:
 Live URL link: https://gisioraelvis.github.io/THEJitu-Cohort9-Training-Week2-Weekend-Assignment
 
 ### Screenshot
-![Screenshot](./assets/screenshot.png)
+
+![Screenshot](./assests/screenshot.png)
