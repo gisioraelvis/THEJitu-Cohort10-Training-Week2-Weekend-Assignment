@@ -1,4 +1,4 @@
-# THEJitu Cohort 10 Training Week 2 Weekend Assignment
+# THEJitu Cohort 9 Training Week 2 Weekend Assignment
 Use HTML, CSS and JavaScript (no Library, Framework or Database).
 The assignment is to build a Todo Application that is supposed to do the following:
 
